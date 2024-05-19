@@ -16,6 +16,7 @@ async function main() {
 
     await client.close();
 
+    console.log("Finished cleaning up database");
     process.exit(0);
   } catch (err) {
     console.error(err);
