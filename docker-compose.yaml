@@ -8,7 +8,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: pass
       MONGO_INITDB_DATABASE: test
   rust-shortener:
-    build: ./Rust-Implementation/Dockerfile
+    build: ./Rust-Implementation
     ports:
       - "8000:3000"
     depends_on:
@@ -20,7 +20,7 @@ services:
       MONGO_MIN_POOL_SIZE: 1
       MONGO_MAX_POOL_SIZE: 100
   javascript-shortener:
-    build: ./Javascript-Implementation/Dockerfile
+    build: ./Javascript-Implementation
     ports:
       - "3000:3000"
     depends_on:
