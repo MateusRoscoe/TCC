@@ -9,7 +9,7 @@ git submodule init
 ```
 
 - Inicialize os containers no docker-compose, inicializando o serviço que deseja
-  - Para isolar variáveis inicialize apenas uma versão da implementação de cada vez.
+  - Para isolar variáveis inicialize apenas uma versão da implementação de cada vez. Utilizando --scale SERVIÇO=0 para não inicializar um serviço específico
 
 ```sh
 docker compose -f "docker-compose.yaml" up -d --build
