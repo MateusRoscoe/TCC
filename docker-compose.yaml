@@ -1,0 +1,25 @@
+services:
+  mongo:
+    image: mongo:7.0.9
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+      MONGO_INITDB_DATABASE: test
+  rust:
+    build: ./Rust-Implementation/Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: mongodb://root:pass@mongo:27017/test
+  javascript:
+    build: ./Javascript-Implementation/Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: mongodb://root:pass@mongo:27017/test

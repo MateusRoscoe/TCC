@@ -1,6 +1,6 @@
-[submodule "Javascript Implementation"]
-	path = Javascript Implementation
+[submodule "Javascript-Implementation"]
+	path = Javascript-Implementation
 	url = https://github.com/MateusRoscoe/URL-Shortener-JS.git
-[submodule "Rust Implementation"]
-	path = Rust Implementation
+[submodule "Rust-Implementation"]
+	path = Rust-Implementation
 	url = https://github.com/MateusRoscoe/ShortenerAPI.git
