@@ -14,6 +14,11 @@ async function main() {
       console.log(`Dropped collection: ${collection.name}`);
     }
 
+    console.log("Creating collection and indexes");
+    await db.createCollection("codes");
+
+    await db.collection("codes").createIndex({ code: 1 }, { unique: true });
+
     await client.close();
 
     console.log("Finished cleaning up database");
