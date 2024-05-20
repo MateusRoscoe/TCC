@@ -10,3 +10,5 @@ if (!$tmpHost) {
 if (node ./src/helpers/setup.js) {
   k6 run -e HOST=$tmpHost -c ./src/tests/average-load.json ./src/run.js
 }
+
+Exit
