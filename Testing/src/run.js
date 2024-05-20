@@ -19,7 +19,7 @@ export function setup() {
     );
     const postCheck = check(post, {
       "status is 200": (r) => r.status === 200,
-      "code is 1": (r) => r.json().code === 1, // This is to ensure fresh application state
+      "code is 1": (r) => r.json().code === "1", // This is to ensure fresh application state
     });
     if (!postCheck) {
       throw new Error(
