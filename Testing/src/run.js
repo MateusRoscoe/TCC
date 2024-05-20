@@ -19,6 +19,7 @@ export function setup() {
     );
     const postCheck = check(post, {
       "status is 200": (r) => r.status === 200,
+      "code is 1": (r) => r.json().code === 1, // This is to ensure fresh application state
     });
     if (!postCheck) {
       throw new Error(
@@ -48,7 +49,7 @@ export function setup() {
 export default function () {
   const res = http.post(
     `http://${__ENV.HOST}/code`,
-    JSON.stringify({ data: "setup" + counter }),
+    JSON.stringify({ data: "run" + counter }),
     {
       headers: {
         "Content-Type": "application/json",
