@@ -1,12 +1,9 @@
 import http from "k6/http";
+import exec from "k6/execution";
 import { check, sleep } from "k6";
-
-export const options = {
-  // A number specifying the number of VUs to run concurrently.
-  vus: 10,
-  // A string specifying the total duration of the test run.
-  duration: "30s",
-};
+import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.2/index.js";
+let counter = 1;
 
 export function setup() {
   try {
@@ -40,7 +37,7 @@ export function setup() {
       throw new Error(`Unexpected response status in GET setup: ${get.status}`);
     }
 
-    sleep(5);
+    sleep(1);
   } catch (error) {
     console.error(error);
     throw error;
@@ -48,14 +45,36 @@ export function setup() {
 }
 
 export default function () {
-  const res = http.get(`http://${__ENV.HOST}/`);
+  const res = http.post(
+    `http://${__ENV.HOST}/code`,
+    JSON.stringify({ data: "setup" + counter }),
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   check(res, {
     "status is 200": (r) => r.status === 200,
   });
+  counter += 1;
 }
 
 export function handleSummary(data) {
+  const testId = __ENV.HOST.replace(":", "-");
+  const configName = exec.test.options.tags.name;
+  const fileName = `results/${configName}/${testId}`;
   return {
-    "summary.json": JSON.stringify(data),
+    [`${fileName}.json`]: JSON.stringify(
+      {
+        host: __ENV.HOST,
+        timestamp: new Date().toISOString(),
+        data,
+      },
+      null,
+      2
+    ),
+    [`${fileName}.html`]: htmlReport(data),
+    stdout: textSummary(data, { indent: " ", enableColors: true }),
   };
 }

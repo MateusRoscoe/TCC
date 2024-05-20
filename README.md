@@ -15,32 +15,12 @@ git submodule init
 docker compose -f "docker-compose.yaml" up -d --build --scale rust-shortener=0 --scale javascript-shortener=0
 ```
 
-- Execute os testes com o K6, caso esteja executando os containers em outra máquina trocar o host.
-  - O teste irá limpar o banco antes de começar a execução
-
-  - Javascript
+- Instale o K6
+- Instale as dependências
 
     ```sh
     cd ./Testing
     npm i
-    HOST=127.0.0.1:3000 sh average-load.sh
-    HOST=127.0.0.1:3000 sh breakpoint.sh
     ```
 
-  - Rust
-
-    ```sh
-    cd ./Testing
-    npm i
-    HOST=127.0.0.1:8000 sh average-load.sh
-    HOST=127.0.0.1:8000 sh breakpoint.sh
-    ```
-
-  - Python
-
-    ```sh
-    cd ./Testing
-    npm i
-    HOST=127.0.0.1:4000 sh average-load.sh
-    HOST=127.0.0.1:4000 sh breakpoint-load.sh
-    ```
+- Execute o script de teste desejado

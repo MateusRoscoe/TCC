@@ -1,7 +1,13 @@
 const mongodb = require("mongodb");
+const fs = require("fs");
 
 async function main() {
   try {
+    console.log("Creating results directory");
+    fs.mkdirSync("results/average-load", { recursive: true });
+    fs.mkdirSync("results/breakpoint", { recursive: true });
+
+    console.log("Cleaning up database");
     const client = new mongodb.MongoClient(
       "mongodb://root:pass@localhost:27017",
       {}
