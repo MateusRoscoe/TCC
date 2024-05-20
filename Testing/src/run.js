@@ -14,6 +14,7 @@ export function setup() {
         headers: {
           "Content-Type": "application/json",
         },
+        responseType: "text",
       }
     );
     const postCheck = check(post, {
