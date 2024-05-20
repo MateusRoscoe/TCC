@@ -1,5 +1,6 @@
 const mongodb = require("mongodb");
 const fs = require("fs");
+const MONGO_HOST = process.env.MONGO_HOST || "localhost:27017";
 
 async function main() {
   try {
@@ -9,7 +10,7 @@ async function main() {
 
     console.log("Cleaning up database");
     const client = new mongodb.MongoClient(
-      "mongodb://root:pass@localhost:27017",
+      `mongodb://root:pass@${MONGO_HOST}`,
       {}
     );
     await client.connect();
