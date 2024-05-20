@@ -1,3 +1,3 @@
 #!/bin/sh
 
-node ./helpers/setup.js && k6 run -e HOST=$HOST ./tests/average-load.js
+node ./src/helpers/setup.js && k6 run -e HOST=$HOST -c ./src/tests/average-load.json ./src/run.js
