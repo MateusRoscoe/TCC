@@ -10,7 +10,9 @@ services:
   rust-shortener:
     build: ./Rust-Implementation
     ports:
-      - "8000:3000"
+      - "3000:3000"
+    expose:
+      - "3000"
     depends_on:
       - mongo
     environment:
@@ -22,11 +24,13 @@ services:
   javascript-shortener:
     build: ./Javascript-Implementation
     ports:
-      - "3000:3000"
+      - "8000:8000"
+    expose:
+      - "8000"
     depends_on:
       - mongo
     environment:
-      PORT: 3000
+      PORT: 8000
       MONGO_URI: mongodb://root:pass@mongo:27017
       MONGO_DATABASE: test
       MONGO_COLLECTION_NAME: codes
