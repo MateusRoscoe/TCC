@@ -51,6 +51,7 @@ export default function () {
     `http://${__ENV.HOST}/code`,
     JSON.stringify({ data: "run" + counter }),
     {
+      timeout: "10s",
       headers: {
         "Content-Type": "application/json",
       },

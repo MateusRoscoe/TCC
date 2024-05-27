@@ -1,12 +1,16 @@
 {
   "stages": [
-    { "duration": "10s", "target": 100 },
-    { "duration": "10m", "target": 20000 },
-    { "duration": "10m", "target": 50000 }
+    { "duration": "5s", "target": 100 },
+    { "duration": "2m", "target": 20000 },
+    { "duration": "5m", "target": 50000 }
   ],
   "thresholds": {
-    "http_req_duration": ["p(95)<10000"],
-    "http_req_failed": ["rate<0.1"]
+    "http_req_duration": [
+      { "threshold": "p(95)<500", "abortOnFail": true, "delayAbortEval": "30s" }
+    ],
+    "http_req_failed": [
+      { "threshold": "rate<0.01", "abortOnFail": true, "delayAbortEval": "30s" }
+    ]
   },
   "discardResponseBodies": true,
   "tags": {
