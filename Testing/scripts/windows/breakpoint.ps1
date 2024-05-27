@@ -8,7 +8,7 @@ if (!$tmpHost) {
 }
 
 if (node ./src/helpers/setup.js) {
-  k6 run -e HOST=$tmpHost -c ./src/tests/breakpoint.json ./src/run.js
+  k6 run -e HOST=$tmpHost -c ./src/tests/breakpoint.json ./src/run-breakpoint.js
 }
 
 Exit
